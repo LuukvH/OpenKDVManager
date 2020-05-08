@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore .\OpenKDVManager.sln
+      run: dotnet restore OpenKDVManager.sln
     - name: Build
-      run: dotnet build .\OpenKDVManager.sln --configuration Release --no-restore
+      run: dotnet build OpenKDVManager.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test .\OpenKDVManager.sln --no-restore --verbosity normal
+      run: dotnet test OpenKDVManager.sln --no-restore --verbosity normal
