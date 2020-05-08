@@ -39,6 +39,12 @@ namespace Users.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                /* Run migrations on app startup
+                 * TODO: [https://github.com/LuukvH/OpenKDVManager/issues/2] Do not run migrations on app startup
+                 * For example having multiple app instance all starting to run the migrations
+                 */
+                UpdateDatabase(app);
             }
 
             app.UseHttpsRedirection();
@@ -51,6 +57,19 @@ namespace Users.API
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<UserContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }
