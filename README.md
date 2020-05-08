@@ -16,3 +16,7 @@ Since we don't want the frontend directly talking to the backend we need to impl
 
 ## Frontend
 Since we have an api only backend the frontend is going to be servered seperatly. 
+
+## References
+- https://github.com/dotnet-architecture/eBooks/raw/master/current/containerized-lifecycle/Containerized-Docker-Application-Lifecycle-with-Microsoft-Platform-and-Tools.pdf
+- 
