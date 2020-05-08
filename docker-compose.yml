@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  users.api:
+    image: ${DOCKER_REGISTRY-}usersapi
+    build:
+      context: .
+      dockerfile: Users.API/Dockerfile
+    depends_on:
+      - "users.database"
+    networks:
+       - kdvmanager-users-network
+
+  users.database:
+     image: postgres:latest
+     restart: always
+     environment:
+         POSTGRES_PASSWORD: postgres
+     volumes:
+       - users_data:/var/lib/postgresql/data
+     networks:
+       - kdvmanager-users-network
+
+volumes:
+  users_data:
+
+networks:
+  kdvmanager-users-network:
+    driver: bridge
