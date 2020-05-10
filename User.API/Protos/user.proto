@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcUser";
+
+package user;
+
+// The users service definition.
+service User {
+  // Sends a greeting
+  rpc SayHello (UserRequest) returns (UserReply);
+}
+
+// The request message containing the user's name.
+message UserRequest {
+  string uuid = 1;
+}
+
+// The response message containing the greetings.
+message UserReply {
+  string name = 1;
+}

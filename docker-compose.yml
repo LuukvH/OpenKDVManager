@@ -1,17 +1,25 @@
 version: '3.4'
 
 services:
-  users.api:
-    image: ${DOCKER_REGISTRY-}usersapi
+  user.service:
+    image: ${DOCKER_REGISTRY-}userservice
     build:
       context: .
-      dockerfile: Users.API/Dockerfile
+      dockerfile: User.Service/Dockerfile
     depends_on:
-      - "users.database"
+      - "user.database"
     networks:
-       - kdvmanager-users-network
+       - kdvmanager-network
 
-  users.database:
+  user.api:
+    image: ${DOCKER_REGISTRY-}userapi
+    build:
+      context: .
+      dockerfile: User.API/Dockerfile
+    networks:
+       - kdvmanager-network
+
+  user.database:
      image: postgres:latest
      restart: always
      environment:
@@ -19,11 +27,11 @@ services:
      volumes:
        - users_data:/var/lib/postgresql/data
      networks:
-       - kdvmanager-users-network
+       - kdvmanager-network
 
 volumes:
   users_data:
 
 networks:
-  kdvmanager-users-network:
+  kdvmanager-network:
     driver: bridge

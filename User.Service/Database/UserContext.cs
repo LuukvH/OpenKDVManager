@@ -1,7 +1,7 @@
-﻿namespace Users.API.Database
+﻿namespace User.Service.Database
 {
+    using global::User.Service.Models;
     using Microsoft.EntityFrameworkCore;
-    using Users.API.Models;
 
     public class UserContext : DbContext
     {
