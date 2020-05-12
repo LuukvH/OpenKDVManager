@@ -16,6 +16,8 @@ services:
     build:
       context: .
       dockerfile: User.API/Dockerfile
+    depends_on:
+      - "user.service"
     networks:
        - kdvmanager-network
 

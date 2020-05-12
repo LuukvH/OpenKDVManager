@@ -20,7 +20,7 @@ namespace User.Service
         {
             return Task.FromResult(new UserReply
             {
-                Name = "Hello "
+                Name = "Luuk van Hulten"
             });
         }
     }
